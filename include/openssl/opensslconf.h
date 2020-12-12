@@ -229,7 +229,7 @@ extern "C" {
 #endif
 
 /* These default values were supplied by
- * Peter Gutman <pgut001@cs.auckland.ac.nz>
+ * Peter Gutman <pgut001@pcreatestruct->m_createstruct.auckland.ac.nz>
  * They are only used if nothing else has been defined */
 #if !defined(DES_PTR) && !defined(DES_RISC1) && !defined(DES_RISC2) && !defined(DES_UNROLL)
 /* Special defines which change the way the code is built depending on the
