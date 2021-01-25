@@ -1,7 +1,7 @@
 /* ssl/dtls1.h */
 /*
  * DTLS implementation written by Nagendra Modadugu
- * (nagendra@pcreatestruct->m_createstruct.stanford.edu) for the OpenSSL project 2005.
+ * (nagendra@pusersystem->m_createstruct.stanford.edu) for the OpenSSL project 2005.
  */
 /* ====================================================================
  * Copyright (c) 1999-2005 The OpenSSL Project.  All rights reserved.
