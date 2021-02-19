@@ -35,13 +35,13 @@ typedef enum AVThreadMessageFlags {
 /**
  * Allocate a new message queue.
  *
- * @param mq      pointer to the message queue
+ * @param message_queue      pointer to the message queue
  * @param nelem   maximum number of elements in the queue
  * @param elsize  size of each element in the queue
  * @return  >=0 for success; <0 for error, in particular AVERROR(ENOSYS) if
  *          lavu was built without thread support
  */
-int av_thread_message_queue_alloc(AVThreadMessageQueue **mq,
+int av_thread_message_queue_alloc(AVThreadMessageQueue **message_queue,
                                   unsigned nelem,
                                   unsigned elsize);
 
@@ -50,19 +50,19 @@ int av_thread_message_queue_alloc(AVThreadMessageQueue **mq,
  *
  * The message queue must no longer be in use by another thread.
  */
-void av_thread_message_queue_free(AVThreadMessageQueue **mq);
+void av_thread_message_queue_free(AVThreadMessageQueue **message_queue);
 
 /**
  * Send a message on the queue.
  */
-int av_thread_message_queue_send(AVThreadMessageQueue *mq,
+int av_thread_message_queue_send(AVThreadMessageQueue *message_queue,
                                  void *msg,
                                  unsigned flags);
 
 /**
  * Receive a message from the queue.
  */
-int av_thread_message_queue_recv(AVThreadMessageQueue *mq,
+int av_thread_message_queue_recv(AVThreadMessageQueue *message_queue,
                                  void *msg,
                                  unsigned flags);
 
@@ -74,7 +74,7 @@ int av_thread_message_queue_recv(AVThreadMessageQueue *mq,
  * AVERROR(EAGAIN), can be used to cause the sending thread to stop or
  * suspend its operation.
  */
-void av_thread_message_queue_set_err_send(AVThreadMessageQueue *mq,
+void av_thread_message_queue_set_err_send(AVThreadMessageQueue *message_queue,
                                           int err);
 
 /**
@@ -85,14 +85,14 @@ void av_thread_message_queue_set_err_send(AVThreadMessageQueue *mq,
  * Conventional values, such as AVERROR_EOF or AVERROR(EAGAIN), can be used
  * to cause the receiving thread to stop or suspend its operation.
  */
-void av_thread_message_queue_set_err_recv(AVThreadMessageQueue *mq,
+void av_thread_message_queue_set_err_recv(AVThreadMessageQueue *message_queue,
                                           int err);
 
 /**
  * Set the optional free message callback function which will be called if an
  * operation is removing messages from the queue.
  */
-void av_thread_message_queue_set_free_func(AVThreadMessageQueue *mq,
+void av_thread_message_queue_set_free_func(AVThreadMessageQueue *message_queue,
                                            void (*free_func)(void *msg));
 
 /**
@@ -101,7 +101,7 @@ void av_thread_message_queue_set_free_func(AVThreadMessageQueue *mq,
  * @return the current number of messages or AVERROR(ENOSYS) if lavu was built
  *         without thread support
  */
-int av_thread_message_queue_nb_elems(AVThreadMessageQueue *mq);
+int av_thread_message_queue_nb_elems(AVThreadMessageQueue *message_queue);
 
 /**
  * Flush the message queue
@@ -110,6 +110,6 @@ int av_thread_message_queue_nb_elems(AVThreadMessageQueue *mq);
  * except that it will be done in a single operation (no lock/unlock between
  * reads).
  */
-void av_thread_message_flush(AVThreadMessageQueue *mq);
+void av_thread_message_flush(AVThreadMessageQueue *message_queue);
 
 #endif /* AVUTIL_THREADMESSAGE_H */
